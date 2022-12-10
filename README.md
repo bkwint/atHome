@@ -24,3 +24,12 @@ Define a proper cron, for example every minute
 
 ```* * * * * node /path/to/your/dir/app.js```
 
+## Integration with HomeAssistant
+If you want to use this as a sensor in home-assistant, add it to your sensors list like this:
+
+```
+- platform: mqtt
+  name: "AtHome"
+  state_topic: "atHome"
+```
+
