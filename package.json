@@ -6,7 +6,8 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "npx eslint -c .eslintrc.json \"./**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:ci": "CI=true jest -i --coverage"
   },
   "keywords": [],
   "author": "",
