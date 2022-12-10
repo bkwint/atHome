@@ -3,7 +3,7 @@ const getClients = require('./getClients');
 describe('getClients', () => {
   describe('Happy flow', () => {
     test('Should return the mac addresses in the result set', async () => {
-      const result = await getClients('some; cookies', {
+      const axios = {
         get: jest.fn(() => ({
           data: {
             meta: {
@@ -19,12 +19,23 @@ describe('getClients', () => {
             ],
           },
         })),
-      });
+      };
+
+      const result = await getClients('some; cookies', axios);
 
       expect(result).toEqual([
         '1',
         '2',
       ]);
+      expect(axios.get).toHaveBeenCalledTimes(1);
+      expect(axios.get).toHaveBeenCalledWith(
+        '/api/s/default/stat/sta',
+        {
+          headers: {
+            cookie: 'some; cookies',
+          },
+        },
+      );
     });
   });
 
